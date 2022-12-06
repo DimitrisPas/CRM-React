@@ -68,7 +68,21 @@ const TicketPage = ({ editMode }) => {
       <h1>{editMode ? 'Update Your Ticket' : 'Create a Ticket'}</h1>
       <div className="ticket-container">
         <form onSubmit={handleSubmit}>
-          <section>
+          <section className = "section-1">
+            <label htmlFor="description">Description</label>
+              <textarea
+                id="description"
+                name="description"
+                type="text"
+                onChange={handleChange}
+                required={true}
+                value={formData.description}
+                col = "60"
+                rows = "10"
+              />
+          </section>
+
+          <section className = "section-2">
             <label htmlFor="title">Title</label>
             <input
               id="title"
@@ -78,17 +92,6 @@ const TicketPage = ({ editMode }) => {
               required={true}
               value={formData.title}
             />
-
-            <label htmlFor="description">Description</label>
-            <textarea
-              id="description"
-              name="description"
-              type="text"
-              onChange={handleChange}
-              required={true}
-              value={formData.description}
-              >
-            </textarea>
 
             <label>Category</label>
             <select
@@ -101,7 +104,7 @@ const TicketPage = ({ editMode }) => {
               ))}
             </select>
 
-            <label htmlFor="new-category">Or add new category</label>
+            <label htmlFor="new-category">New Category</label>
             <input
               id="new-category"
               name="category"
@@ -176,6 +179,9 @@ const TicketPage = ({ editMode }) => {
                   >
                     Working on it
                   </option>
+                  <option selected={formData.status == 'stuck'} value="stuck">
+                    Stuck
+                  </option>
                   <option
                     selected={formData.status == 'not started'}
                     value="not started"
@@ -189,20 +195,18 @@ const TicketPage = ({ editMode }) => {
             <input type="submit" />
           </section>
 
-          <section>
+          <section className = "section-3">
             <label htmlFor="owner">Owner</label>
-            <select
+            <input
+              id="owner"
               name="owner"
+              type="owner"
               onChange={handleChange}
               required={true}
               value={formData.owner}
-              >
-                <option selected={formData.owner == "Dimitris"} value="Dimitris">Dimitris</option>
-                <option selected={formData.owner == "Jason"} value="Jason">Jason</option>
-                <option selected={formData.owner == "Panagiotis"} value="Panagiotis">Panagiotis</option>
-                <option selected={formData.owner == "Kostis"} value="Kostis">Kostis</option>
-                <option selected={formData.owner == "Tom"} value="Tom">Tom</option>
-              </select>
+            />
+
+ 
           </section>
         </form>
       </div>

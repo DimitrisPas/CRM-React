@@ -2,7 +2,6 @@ import TicketCard from '../components/TicketCard'
 import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import CategoriesContext from '../context'
-import { Card, Input } from 'semantic-ui-react'
 
 const Dashboard = () => {
   const [tickets, setTickets] = useState(null)
@@ -42,27 +41,35 @@ const Dashboard = () => {
     ...new Set(tickets?.map(({ category }) => category)),
   ]
 
+  const current = new Date();
+  const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  const date = `${weekday[current.getDay()]} ${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
 
   return (
     <div className="dashboard">
-      <div>
+      <div className = "dash-header">
         <h1>My Projects</h1>
+        <div className="date">
+          {date}
+        </div>
       </div>
-      {tickets &&
-        uniqueCategories?.map((uniqueCategory, categoryIndex) => (
-          <div key={categoryIndex}>
-            <h3>{uniqueCategory}</h3>
-            {tickets
-              .filter((ticket) => ticket.category === uniqueCategory)
-              .map((filteredTicket, _index) => (
-                <TicketCard
-                  id={_index}
-                  color={colors[categoryIndex] || colors[0]}
-                  ticket={filteredTicket}
-                />
-              ))}
-          </div>
-        ))}
+      <div className="ticket-container">
+        {tickets &&
+          uniqueCategories?.map((uniqueCategory, categoryIndex) => (
+            <div key={categoryIndex} className = 'ticket-container-inner'>
+              <h3 className = "project_cat">{uniqueCategory}</h3>
+              {tickets
+                .filter((ticket) => ticket.category === uniqueCategory)
+                .map((filteredTicket, _index) => (
+                  <TicketCard
+                    id={_index}
+                    color={colors[categoryIndex] || colors[0]}
+                    ticket={filteredTicket}
+                  />
+                ))}
+            </div>
+          ))}
+      </div>
     </div>
   )
 }

@@ -4,10 +4,6 @@ html, body {
   font-family: 'Trebuchet MS', Arial, sans-serif;
 }
 
-.app {
-  display: flex;
-}
-
 #link {
 text-decoration: none;
 color: rgb(46, 46, 46);
@@ -16,20 +12,29 @@ color: rgb(46, 46, 46);
 /* ----- Nav ------ */
 
 nav {
-  height: 100vh;
   background-color: rgb(43, 43, 63);
   color: rgb(255,255,255);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display:flex;
+  align-items: center;
+  justify-content:space-between;
 }
 
 nav .logo-container,
 nav .controls-container {
   padding: 40px 25px;
   display: flex;
-  flex-direction: column;
+  gap:30px;
+}
+
+
+.date{
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.controls-container div{
+  cursor: pointer;
+  font-size:32px;
 }
 
 nav .logo-container img {
@@ -42,9 +47,10 @@ nav .icon {
 
 /* ----- Dashboard ------ */
 
-.dashboard {
-  padding: 30px;
-  width: 100%;
+.dashboard,.ticket {
+  width: 92%;
+  margin:0 auto;
+  padding-top:50px;
 }
 
 .dashboard .ticket-container {
@@ -159,10 +165,6 @@ nav .icon {
 
 /* ----- Ticket ------ */
 
-.ticket {
-  padding: 30px;
-  width: 100%;
-}
 
 .ticket .ticket-container {
   width: 100%;
@@ -171,7 +173,32 @@ nav .icon {
 
 }
 .ticket form  {
-  display: flex;
+  display: grid;
+  
+  grid-template-rows: repeat(3,1fr);
+  grid-template-columns: repeat(2,1fr);
+}
+
+.section-1{
+  grid-row-start: 1;
+  grid-column-start: 1;
+
+  grid-row-end: 2;
+  grid-column-end: -1;
+}
+.section-2{
+  grid-row-start: 2;
+  grid-column-start: 1;
+
+  grid-row-end: 4;
+  grid-column-end: 2;
+}
+.section-3{
+  grid-row-start: 2;
+   grid-column-start: 2;
+
+   grid-row-end: 4;
+   grid-column-end: 3;
 }
 
 .ticket form section {
@@ -211,3 +238,18 @@ nav .icon {
 }
 
 .multiple-input-container label{margin:0 !important;}
+
+.ticket-container-inner{padding-top:20px;}
+
+.project_cat{
+  font-size:28px;
+  border-bottom: 2px solid;
+}
+
+.dash-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dash-header h1{margin:0;}

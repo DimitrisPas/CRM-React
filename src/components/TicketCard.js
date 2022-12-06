@@ -9,10 +9,9 @@ const TicketCard = ({ color, ticket }) => {
       <div className="ticket-color" style={{ backgroundColor: color }}></div>
       <Link to={`/ticket/${ticket.documentId}`} id="link">
         <h3>{ticket.title}</h3>
-        <h3>{ticket.description}</h3>
         <StatusDisplay status={ticket.status} />
-        <PriorityDisplay priority={ticket.priority} />
-        <h3 style={{backgroundColor:"salmon"}}>{ticket.owner}</h3>
+        <PriorityDisplay priority={Number(ticket.priority)} />
+        <h3>{ticket.owner}</h3>
       </Link>
       <DeleteBlock documentId={ticket.documentId} />
     </div>

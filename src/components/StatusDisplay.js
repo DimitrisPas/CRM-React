@@ -10,6 +10,9 @@ const StatusDisplay = ({ status }) => {
       case 'working on it':
         color = 'rgb(255,223,186)'
         break
+      case 'stuck':
+        color = 'rgb(255,179,186)'
+        break
       default:
         color = 'rgb(186,225,255)'
     }
